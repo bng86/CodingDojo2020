@@ -1,7 +1,5 @@
 package tw.andyang.codingdojo
 
-import java.lang.IllegalStateException
-
 class Frame(val pins: Array<Int>) {
     fun type(): FrameType {
 
@@ -17,10 +15,11 @@ class Frame(val pins: Array<Int>) {
     }
 
     fun score(): Int {
-        return if(pins.sum() > 10){
+        val sum = pins.sum()
+        return if (sum > 10) {
             throw IllegalStateException()
         } else {
-            pins.sum()
+            sum
         }
     }
 
