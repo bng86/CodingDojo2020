@@ -21,4 +21,41 @@ class GameTest {
         val gameScore = game.getScore()
         Assert.assertEquals(frameScore, gameScore)
     }
+
+    @Test
+    fun `10 局完全沒有打倒球坪`() {
+        val game = Game(listOf(
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0)
+        ))
+        val gameScore = game.getScore()
+        Assert.assertEquals(0, gameScore)
+    }
+
+    @Test
+    fun `玩了11局`() {
+        val game = Game(listOf(
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0),
+            Frame(0, 0)
+        ))
+        val gameScore = game.getScore()
+        Assert.assertEquals(0, gameScore)
+    }
 }
