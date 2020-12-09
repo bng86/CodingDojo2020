@@ -2,6 +2,8 @@ package tw.andyang.codingdojo
 
 import org.junit.Assert
 import org.junit.Test
+import org.junit.internal.runners.statements.ExpectException
+import java.lang.IllegalStateException
 
 class FrameTest {
 
@@ -33,5 +35,17 @@ class FrameTest {
         Assert.assertEquals(FrameType.SPARE, actual)
     }
 
+    @Test(expected = IllegalStateException::class)
+    fun `frame first pin 10 second pin 0 is type strike`() {
+        val frame = Frame(arrayOf(10, 0))
+        val actual = frame.type()
+        Assert.assertEquals(FrameType.STRIKE, actual)
+    }
 
+    @Test
+    fun `frame first pin 0 second pin 10 is type spare`() {
+        val frame = Frame(arrayOf(0, 10))
+        val actual = frame.type()
+        Assert.assertEquals(FrameType.SPARE, actual)
+    }
 }

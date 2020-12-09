@@ -4,14 +4,8 @@ class Frame(val pins: Array<Int>) {
     fun type(): FrameType {
 
         return when {
-            pins[0] == 1 && pins[1] == 9 -> {
-                FrameType.SPARE
-            }
-
-            pins[0] == 3 && pins[1] == 7 -> {
-                FrameType.SPARE
-            }
-
+            pins.size == 2 && pins[0] == 10 -> FrameType.STRIKE
+            pins.size == 2 && pins.sum() == 10 -> FrameType.SPARE
             else -> {
                 FrameType.NORMAL
             }
