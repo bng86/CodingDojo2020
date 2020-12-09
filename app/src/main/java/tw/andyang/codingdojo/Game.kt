@@ -2,7 +2,7 @@ package tw.andyang.codingdojo
 
 class Game(private val frames: List<Frame>) {
 
-
+    private var extraPins = 0
 
     fun getScore(): Int {
         if (frames.size > 10) error("")
@@ -17,13 +17,28 @@ class Game(private val frames: List<Frame>) {
             }
             else if (frame.type() == FrameType.STRIKE){
                 var bonusPinLeft = 2
+                var nextIndex = index + 1
+                var nextFrame = frames[nextIndex]
                 while (bonusPinLeft > 0 && index + 1 < frames.size ) {
-                    for (i in frames[index + 1].donwPins.indices)
-                    score += frames[index + 1].donwPins[0]
-                    score += frames[index + 1].donwPins[1]
+                    for (i in nextFrame.donwPins.indices) {
+                        bonusPinLeft --
+                        score += nextFrame.donwPins[i]
+                        if (bonusPinLeft == 0) {
+                            break
+                        }
+                    }
+                    nextIndex ++
+                    if(nextIndex >= frames.size) {
+                        break
+                    }
+                    nextFrame = frames[nextIndex]
                 }
             }
         }
-        return score
+        return score + extraPins
+    }
+
+    fun addExtraPins(extraPins: Int) {
+        this.extraPins = extraPins
     }
 }

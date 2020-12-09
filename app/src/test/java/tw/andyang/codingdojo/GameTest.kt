@@ -1,9 +1,7 @@
 package tw.andyang.codingdojo
 
 import org.junit.Assert
-import org.junit.Ignore
 import org.junit.Test
-import java.lang.IllegalStateException
 
 class GameTest {
 
@@ -79,7 +77,6 @@ class GameTest {
         Assert.assertEquals(90, gameScore)
     }
 
-    @Ignore
     @Test
     fun `玩了10局 每局都10分 前後各5分`() {
         val game = Game(listOf(
@@ -95,6 +92,7 @@ class GameTest {
             Frame(5, 5),
         ))
         val gameScore = game.getScore()
+        game.addExtraPins(5)
         Assert.assertEquals(150, gameScore)
     }
 
@@ -133,13 +131,25 @@ class GameTest {
 
     @Test
     fun `第一局打 STRIKE，第二局 STRIKE 3rd NORMAL，計算目前分數`() {
-
+        //25 + 18 + 8
         val game = Game(listOf(
             Frame(10),
             Frame(10),
             Frame(5, 3), //Kotlin 1.4
         ))
         val gameScore = game.getScore()
-        Assert.assertEquals(56, gameScore)
+        Assert.assertEquals(51, gameScore)
+    }
+
+    @Test
+    fun `第一局打 STRIKE，第二局 Spare 3rd NORMAL，計算目前分數`() {
+        //20 + 15 + 8
+        val game = Game(listOf(
+            Frame(10),
+            Frame(5, 5),
+            Frame(5, 3), //Kotlin 1.4
+        ))
+        val gameScore = game.getScore()
+        Assert.assertEquals(43, gameScore)
     }
 }
