@@ -36,10 +36,9 @@ class FrameTest {
     }
 
     @Test(expected = IllegalStateException::class)
-    fun `frame first pin 10 second pin 0 is type strike`() {
+    fun `frame first pin 10 second pin 0 throws Exception`() {
         val frame = Frame(arrayOf(10, 0))
         val actual = frame.type()
-        Assert.assertEquals(FrameType.STRIKE, actual)
     }
 
     @Test
