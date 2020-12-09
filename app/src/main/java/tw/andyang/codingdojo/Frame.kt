@@ -16,4 +16,12 @@ class Frame(val pins: Array<Int>) {
         }
     }
 
+    fun score(): Int {
+        return if(pins.sum() > 10){
+            throw IllegalStateException()
+        } else {
+            pins.sum()
+        }
+    }
+
 }
