@@ -15,6 +15,14 @@ class Game(private val frames: List<Frame>) {
                     score += frames[index + 1].donwPins[0]
                 }
             }
+            else if (frame.type() == FrameType.STRIKE){
+                var bonusPinLeft = 2
+                while (bonusPinLeft > 0 && index + 1 < frames.size ) {
+                    for (i in frames[index + 1].donwPins.indices)
+                    score += frames[index + 1].donwPins[0]
+                    score += frames[index + 1].donwPins[1]
+                }
+            }
         }
         return score
     }

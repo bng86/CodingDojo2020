@@ -108,4 +108,38 @@ class GameTest {
         val gameScore = game.getScore()
         Assert.assertEquals(23, gameScore)
     }
+
+    @Test
+    fun `第一局打 SPARE，第二局 inverse-NORMAL，計算目前分數`() {
+
+        val game = Game(listOf(
+            Frame(5, 5),
+            Frame(3, 5),
+        ))
+        val gameScore = game.getScore()
+        Assert.assertEquals(21, gameScore)
+    }
+
+    @Test
+    fun `第一局打 STRIKE，第二局 NORMAL，計算目前分數`() {
+
+        val game = Game(listOf(
+            Frame(10),
+            Frame(5, 3),
+        ))
+        val gameScore = game.getScore()
+        Assert.assertEquals(26, gameScore)
+    }
+
+    @Test
+    fun `第一局打 STRIKE，第二局 STRIKE 3rd NORMAL，計算目前分數`() {
+
+        val game = Game(listOf(
+            Frame(10),
+            Frame(10),
+            Frame(5, 3), //Kotlin 1.4
+        ))
+        val gameScore = game.getScore()
+        Assert.assertEquals(56, gameScore)
+    }
 }
