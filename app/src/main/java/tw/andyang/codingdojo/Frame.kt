@@ -12,6 +12,10 @@ class Frame {
         donwPins = arrayOf(pin1, pin2)
     }
 
+//    constructor(pin1: Int, pin2: Int, bonus: Int) {
+//        donwPins = arrayOf(pin1, pin2, bonus)
+//    }
+
     fun type(): FrameType {
 
         if (donwPins.first() == 10 && donwPins.size > 1) throw IllegalStateException()

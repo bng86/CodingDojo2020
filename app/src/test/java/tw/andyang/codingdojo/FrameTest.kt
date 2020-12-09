@@ -2,7 +2,6 @@ package tw.andyang.codingdojo
 
 import org.junit.Assert
 import org.junit.Test
-import org.junit.internal.runners.statements.ExpectException
 import java.lang.IllegalStateException
 
 class FrameTest {

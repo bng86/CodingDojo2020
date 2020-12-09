@@ -7,7 +7,9 @@ class Game(private val frames: List<Frame>) {
         var score = 0
         for (frame in frames) {
             score += frame.score()
+
         }
+
         return score
     }
 }

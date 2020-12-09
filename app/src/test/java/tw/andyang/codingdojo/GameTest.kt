@@ -69,7 +69,6 @@ class GameTest {
             Frame(0, 9),
             Frame(0, 9),
             Frame(0, 9),
-
             Frame(0, 9),
             Frame(0, 9),
             Frame(0, 9),
@@ -97,5 +96,10 @@ class GameTest {
         ))
         val gameScore = game.getScore()
         Assert.assertEquals(150, gameScore)
+    }
+
+    @Test
+    fun `目前的Game有多少Bonus`() {
+
     }
 }
