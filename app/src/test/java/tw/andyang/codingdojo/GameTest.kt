@@ -99,7 +99,13 @@ class GameTest {
     }
 
     @Test
-    fun `目前的Game有多少Bonus`() {
+    fun `第一局打 SPARE，第二局 NORMAL，計算目前分數`() {
 
+        val game = Game(listOf(
+            Frame(5, 5),
+            Frame(5, 3),
+        ))
+        val gameScore = game.getScore()
+        Assert.assertEquals(23, gameScore)
     }
 }
