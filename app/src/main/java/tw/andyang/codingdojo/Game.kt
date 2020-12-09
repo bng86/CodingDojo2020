@@ -1,8 +1,12 @@
 package tw.andyang.codingdojo
 
-class Game {
+class Game(private val frames: List<Frame>) {
 
     fun getScore(): Int {
-        return 0
+        var score = 0
+        for (frame in frames) {
+            score += frame.score()
+        }
+        return score
     }
 }
