@@ -1,7 +1,9 @@
 package tw.andyang.codingdojo
 
-import junit.framework.Assert
+import org.junit.Assert
+import org.junit.Ignore
 import org.junit.Test
+import java.lang.IllegalStateException
 
 class GameTest {
 
@@ -40,7 +42,7 @@ class GameTest {
         Assert.assertEquals(0, gameScore)
     }
 
-    @Test
+    @Test(expected = Throwable::class)
     fun `玩了11局`() {
         val game = Game(listOf(
             Frame(0, 0),
@@ -57,5 +59,43 @@ class GameTest {
         ))
         val gameScore = game.getScore()
         Assert.assertEquals(0, gameScore)
+    }
+
+    @Test
+    fun `玩了10局 每局都9分`() {
+        val game = Game(listOf(
+            Frame(0, 9),
+            Frame(0, 9),
+            Frame(0, 9),
+            Frame(0, 9),
+            Frame(0, 9),
+
+            Frame(0, 9),
+            Frame(0, 9),
+            Frame(0, 9),
+            Frame(0, 9),
+            Frame(0, 9),
+        ))
+        val gameScore = game.getScore()
+        Assert.assertEquals(90, gameScore)
+    }
+
+    @Ignore
+    @Test
+    fun `玩了10局 每局都10分 前後各5分`() {
+        val game = Game(listOf(
+            Frame(5, 5),
+            Frame(5, 5),
+            Frame(5, 5),
+            Frame(5, 5),
+            Frame(5, 5),
+            Frame(5, 5),
+            Frame(5, 5),
+            Frame(5, 5),
+            Frame(5, 5),
+            Frame(5, 5),
+        ))
+        val gameScore = game.getScore()
+        Assert.assertEquals(150, gameScore)
     }
 }
