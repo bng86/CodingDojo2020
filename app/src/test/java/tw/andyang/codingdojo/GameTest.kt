@@ -14,7 +14,7 @@ class GameTest {
 
     @Test
     fun `game with only a frame expect score equals that frame score`() {
-        val frame = Frame(arrayOf(5, 5))
+        val frame = Frame(5, 5)
         val frameScore = frame.score()
         Assert.assertEquals(10, frameScore)
         val game = Game(listOf(frame))
