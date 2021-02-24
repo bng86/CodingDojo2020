@@ -9,7 +9,7 @@ class Card(val number: Int = 2, val suit: Suit = Suit.Heart) {
 
     companion object {
         fun create(input: String): Card {
-            val rawSuit = input[0]
+            val rawSuit = input[0].toString().parseSuit()
             val rawNumber = input.substring(1, input.length)
 
             val number = try {
@@ -28,6 +28,16 @@ class Card(val number: Int = 2, val suit: Suit = Suit.Heart) {
     }
 }
 
-enum class Suit {
-    Heart
+enum class Suit(val suit: String) {
+    Heart("H"),
+    Diamond("D");
+}
+
+
+fun String.parseSuit(): Suit{
+    return when(this){
+        "H" -> Suit.Heart
+        "D" -> Suit.Diamond
+        else -> TODO()
+    }
 }

@@ -36,16 +36,26 @@ class CardTest(val input: String, val suit: Suit, val number: Int) {
                 arrayOf<Any?>(
                     "HJ",
                     Suit.Heart,
-                    1
+                    11
                 ),
                 arrayOf<Any?>(
                     "HQ",
                     Suit.Heart,
-                    1
+                    12
                 ),
                 arrayOf<Any?>(
                     "HK",
                     Suit.Heart,
+                    13
+                ),
+                arrayOf<Any?>(
+                    "HA",
+                    Suit.Heart,
+                    1
+                ),
+                arrayOf<Any?>(
+                    "DA",
+                    Suit.Diamond,
                     1
                 )
             )
