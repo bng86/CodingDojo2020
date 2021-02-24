@@ -15,8 +15,21 @@ class PokerHandTest {
             Card.create("H5")
         )
 
-        Assert.assertEquals(ph.getType(), "OnePair")
+        Assert.assertEquals(ph.getType(), PokerHand.Type.OnePair)
 
     }
 
+    @Test
+    fun `input is CA,DA,H3,C2,H2 should get TwoPair` () {
+        //CA,DA,H3,C2,H2
+        val ph = PokerHand(
+            Card.create("CA"),
+            Card.create("DA"),
+            Card.create("H3"),
+            Card.create("C2"),
+            Card.create("H2")
+        )
+
+        Assert.assertEquals(ph.getType(), PokerHand.Type.TwoPair)
+    }
 }
