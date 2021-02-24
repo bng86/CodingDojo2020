@@ -17,7 +17,11 @@ class Card(val number: Int = 2, val suit: Suit) {
                 "Q" -> 12
                 "K" -> 13
                 "A" -> 1
-                else -> rawNumber.toInt()
+                else -> try {
+                    rawNumber.toInt()
+                } catch (e: Exception) {
+                   throw CardParseException()
+                }
             }
             return Card(number = number, rawSuit)
         }
@@ -44,5 +48,6 @@ enum class Suit(val suit: String) {
     }
 }
 
+class CardParseException: Exception()
 
 

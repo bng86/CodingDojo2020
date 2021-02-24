@@ -4,6 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
+import java.lang.IllegalArgumentException
 
 @RunWith(Parameterized::class)
 class CardTest(val input: String, val suit: Suit, val number: Int) {
@@ -70,5 +71,14 @@ class CardTest(val input: String, val suit: Suit, val number: Int) {
                 )
             )
         }
+    }
+}
+
+class CardExceptionTest () {
+
+    @Test(expected = CardParseException::class)
+    fun `If input is HZ, throw CardParseException` () {
+//        Arrange
+        val card = Card.create("HZ")
     }
 }
