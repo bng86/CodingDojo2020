@@ -57,6 +57,16 @@ class CardTest(val input: String, val suit: Suit, val number: Int) {
                     "DA",
                     Suit.Diamond,
                     1
+                ),
+                arrayOf(
+                    "CA",
+                    Suit.Club,
+                    1
+                ),
+                arrayOf(
+                    "SA",
+                    Suit.Spades,
+                    1
                 )
             )
         }
