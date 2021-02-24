@@ -10,6 +10,7 @@ class PokerHand(card: Card, card2: Card, card3: Card, card4: Card, card5: Card) 
         val threeCount = numberGroup.map { it.value }.count { it.size == 3 }
         val fourCount = numberGroup.map { it.value }.count { it.size == 4 }
         val flushCount = cards.groupBy { it.suit }.map { it.value }.count { it.size == 5 }
+        val isStraight = cards.map { it.number }.sortedDescending().reduce { acc, i -> if(acc-i==1) i else -1 }.let { it==-1 }
         return when {
             flushCount == 1 -> {
                 Type.Flush
@@ -29,6 +30,9 @@ class PokerHand(card: Card, card2: Card, card3: Card, card4: Card, card5: Card) 
             pairCount == 1 -> {
                 Type.OnePair
             }
+            isStraight ->{
+                Type.Straight
+            }
             else -> {
                 TODO()
             }
@@ -38,7 +42,7 @@ class PokerHand(card: Card, card2: Card, card3: Card, card4: Card, card5: Card) 
 
     enum class Type {
         OnePair, TwoPair,
-        ThreeOfAKind, FullHouse, FourOfAKind, Flush
+        ThreeOfAKind, FullHouse, FourOfAKind, Flush, Straight
     }
 }
 
