@@ -90,10 +90,10 @@ class PokerHandTest {
         //CA,D2,C3,C4,C5
         val ph = PokerHand(
             Card.create("CA"),
+            Card.create("D2"),
             Card.create("C3"),
-            Card.create("C5"),
-            Card.create("C7"),
-            Card.create("C9")
+            Card.create("C4"),
+            Card.create("C5")
         )
 
         Assert.assertEquals(ph.getType(), PokerHand.Type.Straight)
