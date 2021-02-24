@@ -4,7 +4,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
-import java.lang.IllegalArgumentException
 
 @RunWith(Parameterized::class)
 class CardTest(val input: String, val suit: Suit, val number: Int) {
@@ -20,7 +19,7 @@ class CardTest(val input: String, val suit: Suit, val number: Int) {
 
     companion object {
 
-        @Parameterized.Parameters
+        @Parameterized.Parameters(name = "If input is {0}, suit is {1}, number is {2}")
         @JvmStatic
         fun getData(): Collection<Array<Any?>> {
             return listOf(
@@ -74,11 +73,3 @@ class CardTest(val input: String, val suit: Suit, val number: Int) {
     }
 }
 
-class CardExceptionTest () {
-
-    @Test(expected = CardParseException::class)
-    fun `If input is HZ, throw CardParseException` () {
-//        Arrange
-        val card = Card.create("HZ")
-    }
-}

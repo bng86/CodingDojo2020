@@ -37,13 +37,12 @@ enum class Suit(val suit: String) {
     companion object{
 
         fun parse(input:String):Suit{
-            return when(input){
-                "H" -> Suit.Heart
-                "D" -> Suit.Diamond
-                "C" -> Suit.Club
-                "S" -> Suit.Spades
-                else -> error("??")
+            values().forEach { suit ->
+                if (suit.suit == input) {
+                    return suit
+                }
             }
+            throw CardParseException()
         }
     }
 }
