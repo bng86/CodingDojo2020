@@ -7,18 +7,38 @@ class PokerHand(card: Card, card2: Card, card3: Card, card4: Card, card5: Card) 
     fun getType(): Type {
         val numberGroup = cards.groupBy { it.number }
         val pairCount = numberGroup.map { it.value }.count { it.size == 2 }
-        if (pairCount == 1) {
-            return Type.OnePair
-        } else if (pairCount == 2) {
-            return Type.TwoPair
-        } else {
-            TODO()
+        val threeCount = numberGroup.map { it.value }.count { it.size == 3 }
+        val fourCount = numberGroup.map { it.value }.count { it.size == 4 }
+        val flushCount = cards.groupBy { it.suit }.map { it.value }.count { it.size == 5 }
+        return when {
+            flushCount == 1 -> {
+                Type.Flush
+            }
+            fourCount == 1 -> {
+                Type.FourOfAKind
+            }
+            pairCount == 1 && threeCount == 1 -> {
+                Type.FullHouse
+            }
+            threeCount == 1 -> {
+                Type.ThreeOfAKind
+            }
+            pairCount == 2 -> {
+                Type.TwoPair
+            }
+            pairCount == 1 -> {
+                Type.OnePair
+            }
+            else -> {
+                TODO()
+            }
         }
     }
 
 
     enum class Type {
-        OnePair, TwoPair
+        OnePair, TwoPair,
+        ThreeOfAKind, FullHouse, FourOfAKind, Flush
     }
 }
 
