@@ -112,4 +112,32 @@ class PokerHandTest {
 
         Assert.assertEquals(ph.getType(), PokerHand.Type.Straight)
     }
+
+    @Test
+    fun `input is C10,CJ, CQ,CK,CA should get Straight` () {
+        //CA,D2,C3,C4,C5
+        val ph = PokerHand(
+            Card.create("C10"),
+            Card.create("CJ"),
+            Card.create("CQ"),
+            Card.create("CK"),
+            Card.create("CA")
+        )
+
+        Assert.assertEquals(ph.getType(), PokerHand.Type.StraightFlush)
+    }
+
+    @Test
+    fun `input is C8,SJ, CQ,CK,CA should get Straight` () {
+        //CA,D2,C3,C4,C5
+        val ph = PokerHand(
+            Card.create("C8"),
+            Card.create("SJ"),
+            Card.create("CQ"),
+            Card.create("CK"),
+            Card.create("CA")
+        )
+
+        Assert.assertEquals(ph.getType(), PokerHand.Type.HighCard)
+    }
 }

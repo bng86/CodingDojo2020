@@ -26,6 +26,9 @@ class PokerHand(card: Card, card2: Card, card3: Card, card4: Card, card5: Card) 
         }
 
         return when {
+            flushCount == 1 && isStraight -> {
+                Type.StraightFlush
+            }
             isStraight -> {
                 Type.Straight
             }
@@ -48,7 +51,7 @@ class PokerHand(card: Card, card2: Card, card3: Card, card4: Card, card5: Card) 
                 Type.OnePair
             }
             else -> {
-                TODO()
+                Type.HighCard
             }
         }
     }
@@ -56,7 +59,7 @@ class PokerHand(card: Card, card2: Card, card3: Card, card4: Card, card5: Card) 
 
     enum class Type {
         OnePair, TwoPair,
-        ThreeOfAKind, FullHouse, FourOfAKind, Flush, Straight
+        ThreeOfAKind, FullHouse, FourOfAKind, Flush, Straight,StraightFlush,HighCard
     }
 }
 
