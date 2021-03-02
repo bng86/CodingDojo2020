@@ -6,6 +6,7 @@ class Dices(
     private val point3: Int,
     private val point4: Int
 ) {
+    private val points = listOf(point1, point2, point3, point4)
 
     companion object {
         const val SINGLE_ONE = 101
@@ -18,23 +19,28 @@ class Dices(
     }
 
     fun roll(): Int {
-        if (point1 == point2 && point2 == point3 && point3 == point4) {
-            return when(point1) {
-                1 -> SINGLE_ONE
-                2 -> SINGLE_TWO
-                3 -> SINGLE_THREE
-                4 -> SINGLE_FOUR
-                5 -> SINGLE_FIVE
-                6 -> SINGLE_SIX
-                else -> {
-                    TODO()
+        return points.groupBy { it }.let { grouped ->
+            if(grouped.size==1) {
+                when (point1) {
+                    1 -> SINGLE_ONE
+                    2 -> SINGLE_TWO
+                    3 -> SINGLE_THREE
+                    4 -> SINGLE_FOUR
+                    5 -> SINGLE_FIVE
+                    6 -> SINGLE_SIX
+                    else -> {
+                        TODO()
+                    }
                 }
+            }else if(grouped.size==2){
+                if(grouped[3]!!.size==1 && grouped[1]!!.size==1){
+                    6
+                }else
+                LA18
+            }else{
+                5
             }
 
-        } else if (point3 == 6 && point4 == 6 || point2 == 6 && point4 == 6) {
-            return LA18
-        } else {
-            return 5
         }
     }
 }
