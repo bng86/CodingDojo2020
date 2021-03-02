@@ -12,6 +12,7 @@ class Dices(
         const val TYPE_SINGLE = 1
         const val TYPE_LA = 2
         const val TYPE_N = 3
+        const val TYPE_NONE = 4
 
         const val SINGLE_ONE = 101
         const val SINGLE_TWO = 102
@@ -42,6 +43,12 @@ class Dices(
                     if (grouped[6]?.size == 2) {
                         LA18
                     } else {
+                        val isOneThree = grouped.entries.any{
+                            it.value.size == 3
+                        }
+
+
+
                         val max =
                             grouped
                                 .keys
@@ -61,6 +68,9 @@ class Dices(
                         }
                     }
                     sum
+                }
+                TYPE_NONE -> {
+                    0
                 }
                 else -> {
                     5
