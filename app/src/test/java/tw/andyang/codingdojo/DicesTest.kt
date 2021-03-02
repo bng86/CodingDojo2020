@@ -79,4 +79,9 @@ class DicesTest {
     fun `Roll with 1 1 5 1 get 0`() {
         assertEquals(0, Dices(1,1,5,1).roll())
     }
+
+    @Test
+    fun `Dice of 1 1 3 5 is greater than Dice of 1 1 2 3`() {
+        assertEquals(0, Dices(1,1,5,1).roll())
+    }
 }

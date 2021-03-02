@@ -6,16 +6,16 @@ import org.junit.Test
 class InputTest {
 
     @Test
-    fun `Input 1,1,2,3 output is 1 1 2 3 `() {
+    fun `Input 1,1,2,3 output is Dice 1 1 2 3 `() {
         val input = "1,1,2,3"
         val output = InputManager().parse(input)
-        assertEquals(listOf(1, 1, 2, 3), output)
+        assertEquals(Dices(1, 1, 2, 3), output)
     }
 
     @Test(expected = IllegalArgumentException::class)
     fun `Input 1,1,2,8 output is 1 1 2 3 `() {
         val input = "1,1,2,8"
-        val output = InputManager().parse(input)
+        InputManager().parse(input)
     }
 
     @Test(expected = IllegalArgumentException::class)

@@ -1,6 +1,6 @@
 package tw.andyang.codingdojo
 
-class Dices(
+data class Dices(
     private val point1: Int,
     private val point2: Int,
     private val point3: Int,
@@ -46,16 +46,21 @@ class Dices(
                         val isOneThree = grouped.entries.any{
                             it.value.size == 3
                         }
+                        if (isOneThree){
+                            0
+                        }else{
+                            val max =
+                                grouped
+                                    .keys
+                                    .maxByOrNull {
+                                        it
+                                    }
+                            max!! * 2
+                        }
 
 
 
-                        val max =
-                            grouped
-                                .keys
-                                .maxByOrNull {
-                                    it
-                                }
-                        max!! * 2
+
 //                        6 // case 3331
                     }
 
