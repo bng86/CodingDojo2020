@@ -18,4 +18,10 @@ class InputTest {
         val output = InputManager().parse(input)
     }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun `Input 1,1,2,acb output is 1 1 2 3 `() {
+        val input = "1,1,2,acb"
+        InputManager().parse(input)
+    }
+
 }

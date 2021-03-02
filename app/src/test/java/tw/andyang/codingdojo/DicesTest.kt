@@ -38,4 +38,14 @@ class DicesTest {
     fun `Roll with 6 6 6 6 get single six`() {
         assertEquals(Dices.SINGLE_SIX, Dices(6, 6 ,6, 6).roll())
     }
+
+    @Test
+    fun `Roll with 1 1 6 6 get la18`() {
+        assertEquals(Dices.LA18, Dices(1, 1 ,6, 6).roll())
+    }
+
+    @Test
+    fun `Roll with 1 6 1 6 get la18`() {
+        assertEquals(Dices.LA18, Dices(1, 6 ,1, 6).roll())
+    }
 }

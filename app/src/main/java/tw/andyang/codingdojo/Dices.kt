@@ -14,6 +14,7 @@ class Dices(
         const val SINGLE_FOUR = 104
         const val SINGLE_FIVE = 105
         const val SINGLE_SIX = 106
+        const val LA18 = 90
     }
 
     fun roll(): Int {
@@ -30,6 +31,8 @@ class Dices(
                 }
             }
 
+        } else if (point3 == 6 && point4 == 6 || point2 == 6 && point4 == 6) {
+            return LA18
         } else {
             return 5
         }
