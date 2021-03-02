@@ -54,4 +54,9 @@ class DicesTest {
         assertEquals(6, Dices(3, 3, 1, 1).roll())
     }
 
+    @Test
+    fun `Roll with 3 3 5 2 get 7`() {
+        assertEquals(7, Dices(3,3,5,2).roll())
+    }
+
 }

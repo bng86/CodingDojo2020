@@ -9,6 +9,8 @@ class Dices(
     private val points = listOf(point1, point2, point3, point4)
 
     companion object {
+        const val TYPE_SINGLE = 1;
+
         const val SINGLE_ONE = 101
         const val SINGLE_TWO = 102
         const val SINGLE_THREE = 103
@@ -20,27 +22,41 @@ class Dices(
 
     fun roll(): Int {
         return points.groupBy { it }.let { grouped ->
-            if(grouped.size==1) {
-                when (point1) {
-                    1 -> SINGLE_ONE
-                    2 -> SINGLE_TWO
-                    3 -> SINGLE_THREE
-                    4 -> SINGLE_FOUR
-                    5 -> SINGLE_FIVE
-                    6 -> SINGLE_SIX
-                    else -> {
-                        TODO()
+            when (grouped.size) {
+                1 -> {
+                    when (point1) {
+                        1 -> SINGLE_ONE
+                        2 -> SINGLE_TWO
+                        3 -> SINGLE_THREE
+                        4 -> SINGLE_FOUR
+                        5 -> SINGLE_FIVE
+                        6 -> SINGLE_SIX
+                        else -> {
+                            TODO()
+                        }
                     }
                 }
-            }else if(grouped.size==2){
-                if(grouped[3]!!.size==1 && grouped[1]!!.size==1){
-                    6
-                }else
-                LA18
-            }else{
-                5
-            }
+                2 -> {
+                    if(grouped[6]?.size==2){
+                        LA18
+                    } else {
+                        6 // case 3331
+                    }
 
+                }
+                3 -> {
+                    var sum = 0
+                    grouped.entries.forEach {
+                        if (it.value.size == 1) {
+                            sum += it.key
+                        }
+                    }
+                    sum
+                }
+                else -> {
+                    5
+                }
+            }
         }
     }
 }
