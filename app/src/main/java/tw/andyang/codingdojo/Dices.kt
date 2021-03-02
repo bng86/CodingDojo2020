@@ -9,7 +9,9 @@ class Dices(
     private val points = listOf(point1, point2, point3, point4)
 
     companion object {
-        const val TYPE_SINGLE = 1;
+        const val TYPE_SINGLE = 1
+        const val TYPE_LA = 2
+        const val TYPE_N = 3
 
         const val SINGLE_ONE = 101
         const val SINGLE_TWO = 102
@@ -23,7 +25,7 @@ class Dices(
     fun roll(): Int {
         return points.groupBy { it }.let { grouped ->
             when (grouped.size) {
-                1 -> {
+                TYPE_SINGLE -> {
                     when (point1) {
                         1 -> SINGLE_ONE
                         2 -> SINGLE_TWO
@@ -36,15 +38,22 @@ class Dices(
                         }
                     }
                 }
-                2 -> {
-                    if(grouped[6]?.size==2){
+                TYPE_LA -> {
+                    if (grouped[6]?.size == 2) {
                         LA18
                     } else {
-                        6 // case 3331
+                        val max =
+                            grouped
+                                .keys
+                                .maxByOrNull {
+                                    it
+                                }
+                        max!! * 2
+//                        6 // case 3331
                     }
 
                 }
-                3 -> {
+                TYPE_N -> {
                     var sum = 0
                     grouped.entries.forEach {
                         if (it.value.size == 1) {

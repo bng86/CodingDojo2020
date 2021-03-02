@@ -59,4 +59,13 @@ class DicesTest {
         assertEquals(7, Dices(3,3,5,2).roll())
     }
 
+    @Test
+    fun `Roll with 5 5 1 1 get 10`() {
+        assertEquals(10, Dices(5,5,1,1).roll())
+    }
+
+    @Test
+    fun `Roll with 1 1 5 5 get 10`() {
+        assertEquals(10, Dices(1,1,5,5).roll())
+    }
 }
