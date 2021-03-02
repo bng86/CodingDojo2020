@@ -1,7 +1,8 @@
 package tw.andyang.codingdojo
 
-class Game(andyDices: Dices, anotherDices: Dices) {
+class Game(private val onePlayerDices: Dices, private val anotherDices: Dices) {
     fun getResult(): String {
-        return "Andy win, because of 6,6,4,3"
+        val winnerDices = onePlayerDices
+        return "Andy win, because of $onePlayerDices"
     }
 }

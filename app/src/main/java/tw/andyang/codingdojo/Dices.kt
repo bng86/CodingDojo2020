@@ -30,58 +30,15 @@ data class Dices(
             return LA18
         } else if (isNPoint()) {
             return getNPoint()
-        }
-
-        return points.groupBy { it }.let { grouped ->
-            when (grouped.size) {
-
-                TYPE_LA -> {
-                    if (grouped[6]?.size == 2) {
-                        LA18
-                    } else {
-                        val isOneThree = grouped.entries.any{
-                            it.value.size == 3
-                        }
-                        if (isOneThree){
-                            0
-                        }else{
-                            val max =
-                                grouped
-                                    .keys
-                                    .maxByOrNull {
-                                        it
-                                    }
-                            max!! * 2
-                        }
-
-
-
-
-//                        6 // case 3331
-                    }
-
-                }
-                TYPE_N -> {
-                    var sum = 0
-                    grouped.entries.forEach {
-                        if (it.value.size == 1) {
-                            sum += it.key
-                        }
-                    }
-                    sum
-                }
-                TYPE_NONE -> {
-                    0
-                }
-                else -> {
-                    5
-                }
-            }
+        } else {
+            return 0
         }
     }
 
+    private val pointGroup: Map<Int, List<Int>> =  points.groupBy { it }
+
     private fun getNPoint(): Int {
-        val group = points.groupBy { it }
+        val group = pointGroup
         return if (isTwoPair()) {
             val max =
                 group
@@ -98,19 +55,19 @@ data class Dices(
     }
 
     private fun isTwoPair(): Boolean {
-        val group = points.groupBy { it }
+        val group = pointGroup
         return (group.size == 2 && group.values.all { it.size == 2 })
     }
 
     private fun isNPoint(): Boolean {
-        val group = points.groupBy { it }
+        val group = pointGroup
         return group.size == 3 || (group.size == 2 && group.values.all { it.size == 2 })
     }
 
 
 
     private fun isLA18(): Boolean {
-        val group = points.groupBy { it }
+        val group = pointGroup
         return group.containsKey(6) && group[6]?.size == 2
     }
 
@@ -129,7 +86,11 @@ data class Dices(
     }
 
     private fun isSingle(): Boolean {
-        val group = points.groupBy { it }
+        val group = pointGroup
         return group.size == 1
+    }
+
+    override fun toString(): String {
+        return "$point1,$point2,$point3,$point4"
     }
 }
